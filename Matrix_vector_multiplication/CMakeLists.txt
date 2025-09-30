@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(matrix_vector_multiplication)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+find_package(MPI REQUIRED)
+include_directories(${MPI_INCLUDE_PATH})
+
+include_directories(include)
+
+add_executable(main main.c
+                    src/matrixVectorReadFile.c
+                    src/matrixVectorCreate.c
+                    src/matVectMult.c
+                    src/mpiMatrixVectorScatterRow.c
+                    src/mpiMatrixVectorReadFile.c
+                    src/mpiMatrixVectorMultRow.c)
+target_link_libraries(main ${MPI_LIBRARIES})
